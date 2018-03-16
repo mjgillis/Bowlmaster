@@ -46,6 +46,7 @@ public class Pinsetter : MonoBehaviour
         foreach (Pin pin in FindObjectsOfType<Pin>())
         {
             pin.RaiseIfStanding();
+            pin.transform.rotation = Quaternion.Euler(270f, 0, 0);
         }
     }
 

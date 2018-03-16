@@ -9,7 +9,18 @@ public class ActionMaster {
     private int[] bowls = new int[21]; // total max number of turns
     private int bowl = 1;  // start at bowl one
 
-    public Action Bowl(int pins)
+    public static Action NextAction (List<int> pinFalls) {
+        ActionMaster am = new ActionMaster();
+        Action currentAction = new Action();
+
+        foreach (int pinFall in pinFalls) {
+            currentAction = am.Bowl(pinFall);
+        }
+
+        return currentAction;
+    }
+
+    public Action Bowl(int pins) // TODO make private
     {
         // Checks to make sure # of pins bowled is between 0-10
         if (pins < 0 || pins > 10) {

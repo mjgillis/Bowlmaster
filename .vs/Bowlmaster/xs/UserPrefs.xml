@@ -1,13 +1,9 @@
 ﻿<Properties StartupConfiguration="{7B9122B3-0979-D482-BAD7-F023B076DF58}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BallDragLaunch.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ActionMaster.cs">
     <Files>
-      <File FileName="Assets/Scripts/ActionMaster.cs" Line="5" Column="28" />
-      <File FileName="Assets/Scripts/Gutter.cs" Line="18" Column="10" />
-      <File FileName="Assets/Scripts/Pinsetter.cs" Line="15" Column="60" />
-      <File FileName="Assets/Scripts/ScoreMaster.cs" Line="12" Column="26" />
-      <File FileName="Assets/Scripts/CameraControl.cs" Line="19" Column="1" />
-      <File FileName="Assets/Scripts/BallDragLaunch.cs" Line="6" Column="18" />
-      <File FileName="Assets/Scripts/Ball.cs" Line="12" Column="39" />
+      <File FileName="Assets/Editor/ActionMasterTest.cs" Line="80" Column="29" />
+      <File FileName="Assets/Scripts/ActionMaster.cs" Line="23" Column="39" />
+      <File FileName="Assets/Scripts/Pinsetter.cs" Line="98" Column="53" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -15,9 +11,7 @@
           <Node name="Bowlmaster" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Editor" expanded="True" />
-              <Node name="Scripts" expanded="True">
-                <Node name="BallDragLaunch.cs" selected="True" />
-              </Node>
+              <Node name="Scripts" expanded="True" />
             </Node>
           </Node>
         </State>
