@@ -1,5 +1,5 @@
 ﻿<Properties StartupConfiguration="{7B9122B3-0979-D482-BAD7-F023B076DF58}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Ball.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BallDragLaunch.cs">
     <Files>
       <File FileName="Assets/Scripts/ActionMaster.cs" Line="5" Column="28" />
       <File FileName="Assets/Scripts/Gutter.cs" Line="18" Column="10" />
@@ -16,7 +16,7 @@
             <Node name="Assets" expanded="True">
               <Node name="Editor" expanded="True" />
               <Node name="Scripts" expanded="True">
-                <Node name="Ball.cs" selected="True" />
+                <Node name="BallDragLaunch.cs" selected="True" />
               </Node>
             </Node>
           </Node>
