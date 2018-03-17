@@ -5,39 +5,43 @@ using UnityEngine.UI;
 
 public class Pinsetter : MonoBehaviour
 {
-    public Text standingDisplay;
     public GameObject pinSet;
 
-    private bool ballOutOfPlay = false;
-    private int lastStandingCount = -1;
-    private float lastChangeTime;
-    private int lastSettledCount = 10;
     private ActionMaster actionMaster = new ActionMaster();
-
-    private Ball ball;
     private Animator animator;
+    private PinCounter pinCounter;
 
     // Use this for initialization
     void Start()
     {
-        ball = FindObjectOfType<Ball>();
         animator = GetComponent<Animator>();
+        pinCounter = FindObjectOfType<PinCounter>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        standingDisplay.text = CountStanding().ToString();
+    //Calls animation to be triggered based off of roll results from Game Manager
+    public void PerformAction(ActionMaster.Action action) {
 
-        if (ballOutOfPlay)
+        if (action == ActionMaster.Action.Tidy)
         {
-            UpdateStandingCountAndSettle();
-            standingDisplay.color = Color.red;
+            animator.SetTrigger("tidyTrigger");
         }
-    }
 
-    public void SetBallOutOfPlay () {
-        ballOutOfPlay = true;
+        else if (action == ActionMaster.Action.Reset)
+        {
+            animator.SetTrigger("resetTrigger");
+            pinCounter.Reset();
+        }
+
+        else if (action == ActionMaster.Action.EndTurn)
+        {
+            animator.SetTrigger("resetTrigger");
+            pinCounter.Reset();
+        }
+
+        else if (action == ActionMaster.Action.EndGame)
+        {
+            throw new UnityException("Don't know how to handle end game yet");
+        }
     }
 
     // Raises pins during tidy/reset animations
@@ -46,7 +50,6 @@ public class Pinsetter : MonoBehaviour
         foreach (Pin pin in FindObjectsOfType<Pin>())
         {
             pin.RaiseIfStanding();
-            pin.transform.rotation = Quaternion.Euler(270f, 0, 0);
         }
     }
 
@@ -63,81 +66,6 @@ public class Pinsetter : MonoBehaviour
     public void RenewPins() {
         Debug.Log("Renew Pins");
         Instantiate(pinSet, new Vector3(0, 20, 1829), Quaternion.identity);
-    }
-
-    // Update the lastStandingCount
-    void UpdateStandingCountAndSettle()
-    {
-        int currentStanding = CountStanding();
-
-        // Checks if count changed and records time if changed
-        if (currentStanding != lastStandingCount)
-        {
-            lastChangeTime = Time.time;
-            lastStandingCount = currentStanding;
-            return;
-        }
-
-        float settleTime = 3f;  // How long to wait to consider pins settled
-
-        // Compares current time to when last pin count changed and settles pins if greater than settleTime;
-        if ((Time.time - lastChangeTime) > settleTime)
-        { // If last change > 3s ago
-            PinsHaveSettled();
-        }
-
-    }
-
-    // Settles pins, ending the roll and reseting the lane for the next roll
-    void PinsHaveSettled()
-    {
-        int standing = CountStanding();
-        int pinFall = lastSettledCount - standing;
-        lastSettledCount = standing;
-
-        ActionMaster.Action action = actionMaster.Bowl(pinFall);
-
-        if (action == ActionMaster.Action.Tidy) {
-            animator.SetTrigger("tidyTrigger");
-        }
-
-        else if (action == ActionMaster.Action.Reset) {
-            animator.SetTrigger("resetTrigger");
-            lastSettledCount = 10;
-        }
-
-        else if (action == ActionMaster.Action.EndTurn)
-        {
-            animator.SetTrigger("resetTrigger");
-            lastSettledCount = 10;
-        }
-
-        else if (action == ActionMaster.Action.EndGame)
-        {
-            throw new UnityException("Don't know how to handle end game yet");
-        }
-
-        ball.Reset();
-        lastStandingCount = -1; // Indicates pins have settled, and ball not back in box
-        ballOutOfPlay = false;
-        standingDisplay.color = Color.green;
-    }
-
-    // Counts the standing pins and is called everytime the system checks if something is standing
-    // This occurs every update frame once the ball enters the trigger box and stops being called when pins settle
-    int CountStanding()
-    {
-        int standing = 0;
-
-        foreach (Pin pin in FindObjectsOfType<Pin>())
-        {
-            if (pin.IsStanding())
-            {
-                standing++;
-            }
-        }
-
-        return standing;
     }
 
     // Destroys pins that are knocked off the lane

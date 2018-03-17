@@ -20,7 +20,7 @@ public class ActionMaster {
         return currentAction;
     }
 
-    public Action Bowl(int pins) // TODO make private
+    private Action Bowl(int pins)
     {
         // Checks to make sure # of pins bowled is between 0-10
         if (pins < 0 || pins > 10) {

@@ -2,15 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager1 : MonoBehaviour {
+public class GameManager : MonoBehaviour {
+
+    private List<int> bowls = new List<int>();
+    private Pinsetter pinSetter;
+    private Ball ball;
 
 	// Use this for initialization
 	void Start () {
-		
+        pinSetter = FindObjectOfType<Pinsetter>();
+        ball = FindObjectOfType<Ball>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	public void Bowl (int pinFall) {
+
+        bowls.Add(pinFall);
+        ActionMaster.Action nextAction = ActionMaster.NextAction(bowls);
+        pinSetter.PerformAction(nextAction);
+        ball.Reset();
 	}
 }

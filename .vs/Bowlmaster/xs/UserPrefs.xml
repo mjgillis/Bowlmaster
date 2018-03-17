@@ -1,22 +1,15 @@
 ﻿<Properties StartupConfiguration="{7B9122B3-0979-D482-BAD7-F023B076DF58}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ActionMaster.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ScoreMaster.cs">
     <Files>
-      <File FileName="Assets/Editor/ActionMasterTest.cs" Line="80" Column="29" />
-      <File FileName="Assets/Scripts/ActionMaster.cs" Line="23" Column="39" />
-      <File FileName="Assets/Scripts/Pinsetter.cs" Line="98" Column="53" />
+      <File FileName="Assets/Editor/ScoreMasterTest.cs" Line="113" Column="1" />
+      <File FileName="Assets/Scripts/ScoreMaster.cs" Line="62" Column="38" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="18" Column="9" />
+      <File FileName="Assets/Scripts/Pin.cs" Line="44" Column="13" />
+      <File FileName="Assets/Scripts/Pinsetter.cs" Line="10" Column="60" />
+      <File FileName="Assets/Scripts/PinCounter.cs" Line="75" Column="35" />
+      <File FileName="Assets/Editor/ActionMasterTest.cs" Line="37" Column="17" />
+      <File FileName="Assets/Scripts/ActionMaster.cs" Line="60" Column="26" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Bowlmaster" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Editor" expanded="True" />
-              <Node name="Scripts" expanded="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
