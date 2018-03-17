@@ -23,118 +23,33 @@ public class ScoreMaster {
     public static List<int> ScoreFrames (List<int> rolls) 
     {
         //Returns individual frames
-        List<int> frameList = new List<int>();
-        int numRolls = rolls.Count;
-        int currentFrameScore = 0;
-        int currentFrameRollNum = 1; // if 1 it is first roll of turn, if 2 it is second roll
-        bool nextFrame = false;
-        int strike = 0;
-        bool spare = false;
+        List<int> frames = new List<int>();
 
-        // CALCULATE SCORES FOR EACH FRAME
-        // ------------------------------------------------------
-        // This loop goes through every roll in the list
-        for (int i = 0; i < numRolls; i++)
-        {
+        for (int i = 1; i < rolls.Count; i += 2) {
 
-            // FIRST ROLL LOGIC - currenFrameRollNum must be odd
-            // -------------------------------------------------
-            if (currentFrameRollNum % 2 != 0)
-            {
-                if (strike > 0) {
-                    strike--;
+            if (frames.Count == 10) { break; }
 
-                    if (strike % 2 == 0 && frameList.Count <= 9) {
-                        currentFrameScore += rolls[i];
-                        frameList.Add(currentFrameScore);
-                        currentFrameScore -= 10;
-
-                        if (rolls[i] == 10) {
-                            currentFrameScore -= 10;
-                            strike++;
-                        }
-                    }
-                }
-
-                // Checks for strike and existing strike
-                if (rolls[i] == 10)
-                {
-                    currentFrameScore += rolls[i];
-                    strike += 2;
-                }
-
-                // Sets current frame score equal to roll as long as it isn't a strike
-                else if (strike <= 1)
-                {
-                    currentFrameScore += rolls[i];
-                }
-
+            // Normal open frame
+            if (rolls[i-1] + rolls[i] < 10) {
+                frames.Add(rolls[i - 1] + rolls[i]);
             }
 
-            // SECOND ROLL LOGIC - currentFramRollNum must be even
-            // ---------------------------------------------------
-            else if (currentFrameRollNum % 2 == 0)
-            {
-                if (strike > 0)
-                {
-                    strike--;
+            if (rolls.Count - i <= 1) { break; }
 
-                    if (strike == 0 || strike % 2 != 0 && frameList.Count <= 9)
-                    {
-                        currentFrameScore += rolls[i];
-                        frameList.Add(currentFrameScore);
-                        currentFrameScore -= 10;
-                        nextFrame = true;
-                        strike = 0;
-                    }
-                }
-
-                //Checks for spare
-                else if ((currentFrameScore + rolls[i]) == 10)
-                {
-                    currentFrameScore += rolls[i];
-                    nextFrame = true;
-                    spare = true;
-                }
-
-                else
-                {
-                    currentFrameScore += rolls[i];
-                    nextFrame = true;
-                }
-
-                //Checks for spare after strike
-                if (currentFrameScore == 10)
-                {
-                    nextFrame = true;
-                    spare = true;
-                }
+            // Strike frame
+            if (rolls[i-1] == 10) {
+                i--;                                        // Strike frame has just one roll
+                frames.Add(10 + rolls[i + 1] + rolls[i + 2]);
             }
 
-            //POSTING SCORES
-            // ---------------------------------------------
-
-            // Adds score to frame list if no strike or spare
-            if (nextFrame && !spare && frameList.Count <= 9) {
-                frameList.Add(currentFrameScore);
-                currentFrameScore = 0;
+            // Spare frame
+            else if (rolls[i - 1] + rolls[i] == 10) {
+                frames.Add(10 + rolls[i + 1]);
             }
 
-            // Adds score to frame list with spare bonus
-            if (spare && !nextFrame && frameList.Count <= 9) {
-                frameList.Add(currentFrameScore);
-                currentFrameScore -= 10;
-                spare = false;
-            }
-
-            if (currentFrameRollNum % 2 != 0 && rolls[i] == 10) {
-                currentFrameRollNum--;
-            }
-
-            currentFrameRollNum++;
-            nextFrame = false;
         }
 
-        return frameList;
+
+        return frames;
     }
 }
