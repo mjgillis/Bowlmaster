@@ -1,14 +1,12 @@
 ﻿<Properties StartupConfiguration="{7B9122B3-0979-D482-BAD7-F023B076DF58}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ScoreMaster.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BallDragLaunch.cs">
     <Files>
-      <File FileName="Assets/Editor/ScoreMasterTest.cs" Line="113" Column="1" />
-      <File FileName="Assets/Scripts/ScoreMaster.cs" Line="62" Column="38" />
-      <File FileName="Assets/Scripts/GameManager.cs" Line="18" Column="9" />
-      <File FileName="Assets/Scripts/Pin.cs" Line="44" Column="13" />
-      <File FileName="Assets/Scripts/Pinsetter.cs" Line="10" Column="60" />
-      <File FileName="Assets/Scripts/PinCounter.cs" Line="75" Column="35" />
-      <File FileName="Assets/Editor/ActionMasterTest.cs" Line="37" Column="17" />
-      <File FileName="Assets/Scripts/ActionMaster.cs" Line="60" Column="26" />
+      <File FileName="Assets/Editor/ScoreDisplayTest.cs" Line="24" Column="5" />
+      <File FileName="Assets/Scripts/ScoreDisplay.cs" Line="54" Column="31" />
+      <File FileName="Assets/Scripts/ScoreMaster.cs" Line="6" Column="14" />
+      <File FileName="Assets/Scripts/ActionMaster.cs" Line="5" Column="33" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="34" Column="73" />
+      <File FileName="Assets/Scripts/BallDragLaunch.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

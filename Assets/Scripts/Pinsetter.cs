@@ -7,7 +7,6 @@ public class Pinsetter : MonoBehaviour
 {
     public GameObject pinSet;
 
-    private ActionMaster actionMaster = new ActionMaster();
     private Animator animator;
     private PinCounter pinCounter;
 
