@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ScoreDisplay : MonoBehaviour {
 
-    public Text[] rollTexts, frameTexts; 
+    public Text[] rollTexts, frameTexts;
 
     public void FillRolls (List<int> rolls) {
 

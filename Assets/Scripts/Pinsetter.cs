@@ -6,15 +6,26 @@ using UnityEngine.UI;
 public class Pinsetter : MonoBehaviour
 {
     public GameObject pinSet;
+    public ParticleSystem explosion;
 
     private Animator animator;
     private PinCounter pinCounter;
+    private AudioSource endGameCheer;
+    private Canvas canvasUI;
+    private Transform child;
+    private Text congratulations;
 
     // Use this for initialization
     void Start()
     {
         animator = GetComponent<Animator>();
+        endGameCheer = GetComponent<AudioSource>();
         pinCounter = FindObjectOfType<PinCounter>();
+        canvasUI = FindObjectOfType<Canvas>();
+
+        child = canvasUI.transform.Find("Congratulations");
+        congratulations = child.GetComponent<Text>();
+        congratulations.enabled = false;
     }
 
     //Calls animation to be triggered based off of roll results from Game Manager
@@ -39,7 +50,8 @@ public class Pinsetter : MonoBehaviour
 
         else if (action == ActionMaster.Action.EndGame)
         {
-            throw new UnityException("Don't know how to handle end game yet");
+            congratulations.enabled = true;
+            endGameCheer.Play();
         }
     }
 
@@ -71,10 +83,21 @@ public class Pinsetter : MonoBehaviour
 	private void OnTriggerExit(Collider other)
 	{
         GameObject pinLeaving = other.gameObject;
+        Vector3 pinLocation;
 
         if (pinLeaving.GetComponent<Pin>()) {
+            pinLocation = pinLeaving.transform.position;
+            Explosion(pinLocation);
             Destroy(pinLeaving);
         }
 	}
+
+    // Instantiates Particle Effect on Pin Destroy
+    private void Explosion (Vector3 position) {
+
+        float duration = explosion.main.duration;
+        ParticleSystem explosionEmit = Instantiate(explosion, position, Quaternion.identity);
+        Destroy(explosionEmit, duration);
+    }
 
 }
